@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.einkaufsliste4.model.MyModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MyController {
 

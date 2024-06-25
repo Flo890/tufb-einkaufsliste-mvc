@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.einkaufsliste4.R;
 import com.example.einkaufsliste4.model.MyModel;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
     private LayoutInflater mInflater;
@@ -33,8 +36,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String animal = model.getItemAt(position);
-        holder.myTextView.setText(animal);
+        String item = model.getItemAt(position);
+        holder.myTextView.setText(item);
     }
 
 
