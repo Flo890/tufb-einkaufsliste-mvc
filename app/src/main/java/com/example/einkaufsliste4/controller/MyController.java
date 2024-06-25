@@ -22,15 +22,19 @@ public class MyController {
 
         model = new MyModel(context);
 
-        // data to populate the RecyclerView with
-        ArrayList<String> itemNames = new ArrayList<>();
-        itemNames.add("Bananen");
-        itemNames.add("Mehl");
-        itemNames.add("Spezi");
-        itemNames.add("Nudeln");
-        itemNames.add("Äpfel");
+        // initialize with some demo data, it empty
+        if (model.getItemCount() == 0) {
 
-        model.setItems(itemNames);
+            // data to populate the RecyclerView with
+            ArrayList<String> itemNames = new ArrayList<>();
+            itemNames.add("Bananen");
+            itemNames.add("Mehl");
+            itemNames.add("Spezi");
+            itemNames.add("Nudeln");
+            itemNames.add("Äpfel");
+
+            model.setItems(itemNames);
+        }
     }
 
     public MyModel getModel(){

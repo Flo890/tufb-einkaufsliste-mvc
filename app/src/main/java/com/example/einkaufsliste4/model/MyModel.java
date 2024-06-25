@@ -3,18 +3,26 @@ package com.example.einkaufsliste4.model;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.room.Room;
+
 import java.util.List;
 
 public class MyModel {
 
     private final SharedPreferences sharedPreferences;
-    private List<String> mData;
+    private AppDatabase db;
 
     public MyModel(Context context){
         this.sharedPreferences=context.getSharedPreferences(
                 "Einkaufslisten-Prefs-1",
                 Context.MODE_PRIVATE
         );
+
+        db = Room.databaseBuilder(context,
+                AppDatabase.class, "database-name")
+                .allowMainThreadQueries()
+                .build();
+
     }
 
     public String getUsername(){
@@ -28,15 +36,22 @@ public class MyModel {
     }
 
     public int getItemCount(){
-        return mData.size();
+        return db.shoppingItemDao().getAll().size();
     }
 
     public void setItems(List<String> items){
-        this.mData = items;
+        ShoppingItemDao shoppingItemDao = db.shoppingItemDao();
+
+        for(int i = 0; i<items.size(); i++){
+            shoppingItemDao.insertOne(new ShoppingItem(items.get(i),i));
+        }
     }
 
     public String getItemAt(int position){
-        return mData.get(position);
+        ShoppingItemDao shoppingItemDao = db.shoppingItemDao();
+        ShoppingItem shoppingItem = shoppingItemDao.findByPosition(position);
+
+        return shoppingItem.itemName;
     }
 
 }
