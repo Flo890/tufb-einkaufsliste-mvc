@@ -1,4 +1,4 @@
-package com.example.einkaufsliste4.views;
+package com.example.einkaufsliste4;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +12,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.einkaufsliste4.R;
-import com.example.einkaufsliste4.controller.MyController;
-import com.example.einkaufsliste4.controller.MyRecyclerViewAdapter;
-import com.example.einkaufsliste4.model.MyModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ListItemsActivity extends AppCompatActivity {
@@ -43,13 +39,12 @@ public class ListItemsActivity extends AppCompatActivity {
             }
         });
 
-        MyModel model = MyController.getInstance(this).getModel();
 
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(this, model);
+        adapter = new MyRecyclerViewAdapter(this);
         recyclerView.setAdapter(adapter);
     }
 }

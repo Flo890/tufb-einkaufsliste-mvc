@@ -1,4 +1,4 @@
-package com.example.einkaufsliste4.controller;
+package com.example.einkaufsliste4;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,21 +9,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.einkaufsliste4.R;
-import com.example.einkaufsliste4.model.MyModel;
-
 import java.util.Arrays;
 import java.util.List;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
     private LayoutInflater mInflater;
-    private MyModel model;
+
+    private List<String> items = Arrays.asList(new String[]{"Banane","Mehl","Nudeln","Apfel","Spezi"});
 
     // data is passed into the constructor
-    public MyRecyclerViewAdapter(Context context, MyModel model) {
+    public MyRecyclerViewAdapter(Context context) {
         this.mInflater = LayoutInflater.from(context);
-        this.model = model;
     }
 
     @NonNull
@@ -36,7 +33,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String item = model.getItemAt(position);
+        String item = items.get(position);
         holder.myTextView.setText(item);
     }
 
@@ -45,7 +42,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // total number of rows
     @Override
     public int getItemCount() {
-        return model.getItemCount();
+        return items.size();
     }
 
     // stores and recycles views as they are scrolled off screen
